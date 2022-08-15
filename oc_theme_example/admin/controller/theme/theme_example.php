@@ -57,7 +57,7 @@ class ThemeExample extends \Opencart\System\Engine\Controller {
 	}
 
 	public function install(): void {
-		if ($this->user->hasPermission('modify', 'extension/oc_theme_example/theme/theme_example')) {
+		if ($this->request->get['route'] == 'extension/theme|install') {
 			// Add startup to catalog
 			$startup_data = [
 				'code'        => 'theme_example',
@@ -75,7 +75,7 @@ class ThemeExample extends \Opencart\System\Engine\Controller {
 	}
 
 	public function uninstall(): void {
-		if ($this->user->hasPermission('modify', 'extension/oc_theme_example/theme/theme_example')) {
+		if ($this->request->get['route'] == 'extension/theme|uninstall') {
 			$this->load->model('setting/startup');
 
 			$this->model_setting_startup->deleteStartupByCode('theme_example');
